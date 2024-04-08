@@ -1,0 +1,22 @@
+name: DEA CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main 
+  workflow_dispatch:
+    inputs:
+      deploymentEnvironment:
+        description: 'The environment for deployment'
+        required: true
+        default: 'tint'
+        type: string
+        options: ['tint', 'sit']
+
+jobs:
+  processInputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up environment variables
+        run: |
+          echo "deploymentEnvironment=${{ inputs.deploymentEnvironment}}" >> $GITHUB_ENV
