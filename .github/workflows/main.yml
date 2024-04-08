@@ -21,5 +21,5 @@ jobs:
         run: |
           echo "deploymentEnvironment=${{ inputs.deploymentEnvironment}}" >> $GITHUB_ENV
       - name: Run script with inputs
-      - run: |
+        run: |
           echo "environment: ${{ github.event.inputs.deploymentEnvironment}}"
