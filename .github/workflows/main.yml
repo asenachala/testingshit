@@ -20,3 +20,8 @@ jobs:
       - name: Set up environment variables
         run: |
           echo "deploymentEnvironment=${{ inputs.deploymentEnvironment}}" >> $GITHUB_ENV
+      - name: Run script with inputs
+        run: |
+          echo $deploymentEnvironment
+        env:
+          deploymentEnvironment: ${{ secrets.deploymentEnvironment}}
