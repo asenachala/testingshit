@@ -9,6 +9,10 @@ on:
         default: 'warning'
       tags:
         description: 'Test scenario tags'
+      environment:
+        required: true
+        default: 'staging'
+        description: 'Test env'
 
 jobs:
   printInputs:
@@ -17,3 +21,4 @@ jobs:
     - run: |
         echo "Log level: ${{ github.event.inputs.logLevel }}"
         echo "Tags: ${{ github.event.inputs.tags }}" 
+        echo "ENV: ${{ github.event.inputs.environment}}" 
