@@ -1,25 +1,19 @@
 name: DEA CI/CD Pipeline
 
-on:
-  push:
-    branches:
-      - main 
+on: 
   workflow_dispatch:
     inputs:
-      deploymentEnvironment:
-        description: 'The environment for deployment'
+      logLevel:
+        description: 'Log level'     
         required: true
-        default: 'tint'
-        type: string
-        options: ['tint', 'sit']
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'
 
 jobs:
-  processInputs:
+  printInputs:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up environment variables
-        run: |
-          echo "deploymentEnvironment=${{ inputs.deploymentEnvironment}}" >> $GITHUB_ENV
-      - name: Run script with inputs
-        run: |
-          echo "environment: ${{ github.event.inputs.deploymentEnvironment}}"
+    - run: |
+        echo "Log level: ${{ github.event.inputs.logLevel }}"
+        echo "Tags: ${{ github.event.inputs.tags }}" 
